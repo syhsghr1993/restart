@@ -22,6 +22,18 @@
             width: 120px;
             height: 120px;
         }
+        
+        .column-line {
+            width: 200px;
+        }
+
+        .column-first {
+            width: 100%;
+            height: 100px;
+            display: inline-block;
+            border: 1px solid #f00;
+        }
+
     </style>
 </head>
 <body>
@@ -64,6 +76,18 @@
             <span>right</span>
             <span>right</span>
         </div>
+    </div>
+
+    <p>6.两个inline-block垂直排列 有间隙：</p>
+    <div class="column-line">
+        <div class="column-first"></div>
+        <div class="column-first"></div>
+    </div>
+
+    <p>7.两个inline-block垂直排列 设置vertical-align去除间隙：</p>
+    <div class="column-line">
+        <div class="column-first" style="vertical-align:middle"></div>
+        <div class="column-first" style="vertical-align:middle"></div>
     </div>
 </body>
 </html>
