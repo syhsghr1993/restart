@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>inline-block带来的相关问题</title>
+    <style>
+        p {
+            margin-top: 10px;
+        }
+        .demo > div{
+            display: inline-block;
+            border: 1px solid red;
+            font-size: 30px;
+        }
+        .first{
+            width: 100px;
+            height: 100px;
+        }
+        .second{
+            width: 120px;
+            height: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>inline-block因为空格符和换行符的关系，会产生间隙，出去空格符或换行符可以删除间隙，一下是相关延伸</h1>
+
+    <p>1.两个inline-block水平排列，有间隙：</p>
+    <div class="demo">
+        <div class="first"></div>
+        <div class="second"></div>
+    </div>
+
+    <p>2.两个inline-block水平排列 父元素font-size为0去除间隙：</p>
+    <div class="demo" style="font-size: 0;">
+        <div class="first"></div>
+        <div class="second"></div>
+    </div>
+
+    <p>3.两个inline-block水平排列 父元素font-size为0去除间隙,元素基线对齐：</p>
+    <div class="demo" style="font-size: 0;">
+        <div class="first"><span>left</span></div>
+        <div class="second">
+            <span>right</span>
+            <span>right</span>
+        </div>
+    </div>
+
+    <p>4.两个inline-block水平排列 父元素font-size为0去除间隙,设置垂直居中方式：</p>
+    <div class="demo" style="font-size: 0;">
+        <div class="first" style="vertical-align:middle"><span>left</span></div>
+        <div class="second" style="vertical-align:middle">
+            <span>right</span>
+            <span>right</span>
+        </div>
+    </div>
+
+    <p>5.两个inline-block水平排列 父元素font-size为0去除间隙,设置底部对齐：</p>
+    <div class="demo" style="font-size: 0;">
+        <div class="first" style="vertical-align:bottom"><span>left</span></div>
+        <div class="second" style="vertical-align:bottom">
+            <span>right</span>
+            <span>right</span>
+        </div>
+    </div>
+</body>
+</html>
