@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>只触发repaint</title>
+    <style>
+        #test {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <p>页面中的元素更新样式风格相关的属性时就会触发重绘，如background，color，cursor，visibility:</p>
+    <div id="test"></div>
+    <script type="text/javascript">
+        setTimeout(() => {
+            document.getElementById("test").style.backgroundColor = "blue"
+        }, 2000);
+    </script>
+</body>
+</html>
