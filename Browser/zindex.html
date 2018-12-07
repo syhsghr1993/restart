@@ -2,32 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>zindex</title>
     <style>
-        #origin {
-            position: absolute;
-            z-index: 10;
+
+        .f {
+            will-change: transform;
         }
-        .other-layer {
-            position: absolute;
-            right: 0;
-            z-index: 99;
+
+
+        .d {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            position: fixed;
+            left: 0;
+            top: 0;
         }
+
+        .e {
+            width: 50px;
+            height: 50px;
+            margin: 20px; 
+            background-color: green;
+        }
+
+        
     </style>
 </head>
 <body>
-    <div id="origin">
-        我在原始层
+    <div class="d">
+        <div class="e f">
+            fixed本身不会提升合成层，需要后代有提升为合成层的元素
+        </div>
     </div>
-    <div class="other-layer">
-        我是在右边的绝对定位的元素
-    </div>
-    <!-- <script type="text/javascript">
-        setTimeout(() => {
-            document.getElementById("origin").style.marginLeft = "100px"
-        }, 2000);
-    </script> -->
 </body>
 </html>
