@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reflow repaint compositing</title>
+    <style>
+        #a, #b {
+                position: absolute;
+        }
+        
+        #a {
+                left: 10px;
+                top: 10px;
+                z-index: 2;
+        }
+        
+        #b {
+                left: 50px;
+                top: 50px;
+                z-index: 1;
+                animation: move 1s linear;
+        }
+        
+        @keyframes move {
+                from { transform: translateX(0); }
+                to { transform: translateX(70px); }
+        }
+</style>
+</head>
+<body>
+        <!-- 层叠顺序小的或者dom顺序在前的，如果提升为合成层，那么后代也会被隐式的提升为合成层 -->
+        <div id="a">A</div>
+        <div id="b">B</div>
+</body>
+</html>

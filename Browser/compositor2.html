@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>强制升级为合成层</title>
+    <style>
+        .other-layer {
+            position: absolute;
+            right: 0;
+            will-change: transform;
+            /* transform: translateZ(0); */
+        }
+    </style>
+</head>
+<body>
+    <div id="origin">
+        我在原始层:改变以后同一层的元素都有可能重新绘制
+    </div>
+    <div class="other-layer">
+        我是在右边的绝对定位的元素：我在新建的复合图层，别的图层绘制不会影响我
+    </div>
+    <script type="text/javascript">
+        setTimeout(() => {
+            document.getElementById("origin").style.marginLeft = "100px"
+        }, 2000);
+    </script>
+</body>
+</html>

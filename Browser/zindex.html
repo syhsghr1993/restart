@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>zindex</title>
+    <style>
+        #origin {
+            position: absolute;
+            z-index: 10;
+        }
+        .other-layer {
+            position: absolute;
+            right: 0;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <div id="origin">
+        我在原始层
+    </div>
+    <div class="other-layer">
+        我是在右边的绝对定位的元素
+    </div>
+    <!-- <script type="text/javascript">
+        setTimeout(() => {
+            document.getElementById("origin").style.marginLeft = "100px"
+        }, 2000);
+    </script> -->
+</body>
+</html>

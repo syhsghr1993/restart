@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>reflow repaint compositing</title>
+    <style>
+        #ele1 {
+            width: 150px;
+            height: 50px;
+            background-color: #f00;
+        }
+        #ele2 {
+            width: 150px;
+            height: 50px;
+            background-color: #0f0;
+            will-change: transform;
+        }
+    </style>
+</head>
+<body>
+    
+    
+    <!-- <p>被提升为合成层的元素应该尽量放在dom尾部，避免引起隐式合成，如果调换ele1和ele2的dom顺序，会有不同哦</p> -->
+    
+    
+    
+    <div id="ele1">
+        元素1，在原始层
+    </div>
+    <div id="ele2">
+        元素2，提成为合成层
+    </div>
+   
+    <script type="text/javascript">
+        setTimeout(() => {
+            document.getElementById("ele1").style.transform = "translate(100px,0)";
+            document.getElementById("ele2").style.transform = "translate(100px,0)";
+        }, 2000);
+    </script>
+</body>
+</html>
