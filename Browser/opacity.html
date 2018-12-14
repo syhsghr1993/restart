@@ -4,26 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>用opacity替换visibility，reflow和repaint都消失了</title>
+    <title>提升为合成层后，opacity不触发reflow repaint</title>
     <style>
         #test {
-            opacity: 1;
             width: 100px;
             height: 100px;
             background-color: red;
+            will-change: opacity;
         }
-        #test:hover {
-            opacity: 0;
+        .active {
+            opacity: 0.4;
         }
+
     </style>
 </head>
 <body>
-    <p>用opacity替换visibility，reflow和repaint都消失了</p>
+    <p>提升为合成层后，opacity首次改变还是会触发repaint,但是不触发reflow， 之后的改变都不触发reflow&repaint</p>
     <div id="test"></div>
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
         setTimeout(() => {
-            document.getElementById("test").style.opacity = "0";
+            document.getElementById("test").classList.add('active');
+        }, 500);
+
+        setTimeout(() => {
+            document.getElementById("test").style.opacity = 0;
+        }, 1000);
+
+        setTimeout(() => {
+            document.getElementById("test").style.opacity = 0.2;
+        }, 1500);
+
+        setTimeout(() => {
+            document.getElementById("test").style.opacity = 0.6;
         }, 2000);
-    </script> -->
+    </script>
 </body>
 </html>

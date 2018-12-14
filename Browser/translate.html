@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>提升为合成层后，translate不触发reflow repaint </title>
+    <style>
+        #test {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            will-change: transform;
+        }
+        .active {
+            transform: translateX(100px);
+        }
+    </style>
+</head>
+<body>
+    <p>提升为合成层后，translate不触发reflow repaint</p>
+    <div id="test"></div>
+    <script type="text/javascript">
+        setTimeout(() => {
+            document.getElementById("test").classList.add('active')
+        }, 2000);
+    </script>
+</body>
+</html>
