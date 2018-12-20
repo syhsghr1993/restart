@@ -12,3 +12,6 @@ the best or nothing
 
 [display:inline-block 产生间隙的问题](https://github.com/syhsghr1993/restart/issues/2)
 
+# 三.js
+[原型链理解](https://github.com/syhsghr1993/restart/issues/3)
+
