@@ -14,4 +14,5 @@ the best or nothing
 
 # 三.js
 [原型链理解](https://github.com/syhsghr1993/restart/issues/3)
+[apply、call、bind](https://github.com/syhsghr1993/restart/issues/4)
 
