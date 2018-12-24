@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <script>
+        Function.prototype.myApply = function(context) {
+          // 取得传入的对象（执行上下文），比如上文的foo对象
+          // 不传第一个参数，默认是window,
+          var context = context || window;
+          // 给context添加一个属性，这时的this指向调用apply的函数，比如上文的bar
+          context.fn = this;
+
+          var result;
+
+          // 判断参数存不存在
+          if(arguments[1]) {
+            // 执行函数
+            result = context.fn(...arguments[1]);
+          }else {
+            // 执行函数
+            result = context.fn();
+          }
+          
+          // 删除函数
+          delete context.fn;
+          return result;
+        };
+
+        function bar(age) {          
+          console.log('年龄',age);
+          console.log('身高',this.value)
+        }
+
+        var foo = {
+          value: 180
+        }
+
+        bar.myApply(foo,[40]);
+
+        
+        
+    </script>
+</body>
+</html>
