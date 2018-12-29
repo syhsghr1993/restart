@@ -17,5 +17,5 @@ the best or nothing
   * [apply、call、bind](https://github.com/syhsghr1993/restart/issues/4)
 
 # 四.框架
-  * [react之hooks]
+  * [react之hooks](https://github.com/syhsghr1993/restart/tree/master/react/react-hooks)
 
