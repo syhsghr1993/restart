@@ -16,7 +16,7 @@ the best or nothing
   * [原型链理解](https://github.com/syhsghr1993/restart/issues/3)
   * [apply、call、bind](https://github.com/syhsghr1993/restart/issues/4)
   * [类型](https://github.com/syhsghr1993/restart/issues/6)
-  * [find](https://github.com/syhsghr1993/restart/blob/master/js/find/find.js)
+  * [简单实现find](https://github.com/syhsghr1993/restart/blob/master/js/find/find.js)
 
 # 四.框架
   * [react之hooks](https://github.com/syhsghr1993/restart/tree/master/react/react-hooks)
