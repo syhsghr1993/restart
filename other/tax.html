@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个税计算</title>
+</head>
+<body>
+    <div>
+        总收入： <input type="text" id="all">
+    </div>
+    <div>
+        三险一金： <input type="text" id="insurance">
+    </div>
+    <div>
+        个税专享总金额： <input type="text" id="other">
+    </div>
+
+    <button onclick="calc()">计算</button>
+
+    <div id='result'>
+
+    </div>
+    <b id="taxAll"></b>
+    
+    <script>
+        let result = [];
+        function calc(){
+            let all = document.getElementById('all').value;
+            let insurance = document.getElementById('insurance').value;
+            let other = document.getElementById('other').value;
+            let resultStr = document.getElementById('result')
+
+            if(validate(all , insurance ,other)) {
+                clear();
+
+                calcStart(Number(all),Number(insurance),Number(other));
+
+                
+                
+                for(i = 0; i<12;i++){
+                    let p = document.createElement('p');
+                    p.textContent = `${i+1}月需要扣税：${result[i]}`;
+                    resultStr.appendChild(p);
+                }
+
+                let taxAll = reduce();
+                document.getElementById('taxAll').textContent = `总计${taxAll}`;
+                
+            }
+        }
+
+        function validate(all ,insurance , other){
+            let flag = false;
+            if( !(all && Number(all) && Number(all) > 0 ) ) {    
+                alert('总金额输入不正确')
+                return false;
+            }
+            if( !(insurance && Number(insurance) && Number(insurance) > 0)){
+                
+                alert('三险一金输入不正确')
+                return false;
+            }
+            if(!(other && Number(other) >= 0)){
+                
+                alert('个税专享金额输入不正确')
+                return false;
+            }
+            return true;
+        }
+
+        function calcStart(all , insurance ,other){
+            // 累计预扣总额 总收入 - 三险一金 - 专享税 - 基础5000
+            let total = all - insurance - other - 5000;
+
+            for(i = 0; i < 12; i++){
+                let baseNum = totalCalc(total * (i+1))
+                let tax = baseNum.a1 - baseNum.a2 - reduce();
+                result.push(tax);
+            }
+            
+        }
+
+        function reduce(){
+            return result.reduce((item,total) => {
+                return item + total
+            },0)
+        }
+
+        function totalCalc(total){
+            if(total > 0 && total <= 36000){
+                return {
+                    a1: total * 0.03,
+                    a2: 0
+                }
+            }else if(total > 36000 && total <= 144000){
+                return {
+                    a1: total * 0.1,
+                    a2: 2520
+                }
+            }
+            else if(total > 144000 && total <= 300000){
+                return {
+                    a1: total * 0.2,
+                    a2: 16920
+                }
+            }
+            else if(total > 300000 && total <= 420000){
+                return {
+                    a1: total * 0.25,
+                    a2: 31920
+                }
+            }
+            else if(total > 420000 && total <= 660000){
+                return {
+                    a1: total * 0.3,
+                    a2: 52920
+                }
+            }
+            else if(total > 660000 && total <= 960000){
+                return {
+                    a1: total * 0.35,
+                    a2: 85920
+                }
+            }
+            else if(total > 960000){
+                return {
+                    a1: total * 0.35,
+                    a2: 181920
+                }
+            }
+        }
+
+        function clear(){
+            result = [];
+            let resultStr = document.getElementById('result');
+            var childs = resultStr.childNodes; 
+                for(var i = childs .length - 1; i >= 0; i--) {
+                    resultStr.removeChild(childs[i]);
+                }
+        }
+    </script>
+</body>
+</html>
