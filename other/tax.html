@@ -9,7 +9,7 @@
 <body>
     2019个税计算，不一定准确，没想看就x掉咯
     <div>
-        总收入： <input type="text" id="all">
+        每月总收入： <input type="text" id="all">
     </div>
     <div>
         三险一金： <input type="text" id="insurance">
@@ -129,7 +129,7 @@
             }
             else if(total > 960000){
                 return {
-                    a1: total * 0.35,
+                    a1: total * 0.45,
                     a2: 181920
                 }
             }
