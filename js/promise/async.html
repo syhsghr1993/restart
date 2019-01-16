@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./promise&generator.js"></script>
+</head>
+<body>
+    <script>
+            function task1(){
+                return new Promise((resolve,reject) => {
+                    setTimeout(()=> {
+                        resolve(1);
+                    },1000)
+                })
+            }
+
+            function task2(t){
+                return new Promise((resolve,reject) => {
+                    setTimeout(()=> {
+                        resolve(t*2);
+                    },1500)
+                })
+            }
+
+            function task3(t){
+                return new Promise((resolve,reject) => {
+                    setTimeout(()=> {
+                        resolve(t*3);
+                    },2000)
+                })
+            }
+
+            function* init() {
+                const t1 = yield task1();
+                console.log('t1==',t1);
+
+                const t2 = yield task2(t1);
+                console.log('t2==',t2);
+
+                const t3 = yield task3(t2);
+                console.log('t3==',t3);
+            }
+
+            runner(init);
+
+            // async function init2(){
+            //     const t1 = await task1();
+            //     console.log('t1==',t1);
+
+            //     const t2 = await task2(t1);
+            //     console.log('t2==',t2);
+
+            //     const t3 = await task3(t2);
+            //     console.log('t3=',t3);
+            // }
+
+            // init2();
+
+    </script>
+</body>
+</html>
