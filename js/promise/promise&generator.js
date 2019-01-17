@@ -39,5 +39,3 @@ function runner(genFn){
 
     return run()
 }
-
-exports = runner
