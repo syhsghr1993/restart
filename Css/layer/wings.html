@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+       .content {
+		   /* 关键，浮动 */
+			float: left;
+			width: 100%;
+        }
+        .main {
+			height: 200px;
+			/* margin为空出两边距离 */
+			margin-left: 110px;
+			margin-right: 220px;
+			background-color: green;
+        }
+		.left {
+			float: left;
+			height: 200px;
+			width: 100px;
+			/* 负的父元素总宽度 */
+			margin-left: -100%;
+			background-color: red;
+		}
+		.right {
+			width: 200px;
+			height: 200px;
+			float: right;
+			margin-left: -200px;
+			background-color: blue;
+		}	
+    </style>
+</head>
+<body>
+        <div class="content">
+			<div class="main">
+				我理解的双飞翼布局是：先固定好中间main，在搭上两边的翅膀
+			</div>
+		</div>
+		<div class="left"></div>
+		<div class="right"></div>
+    
+</body>
+</html>
