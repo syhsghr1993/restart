@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 500px;
+      }
+      ul {
+        list-style: none;
+      }
+      .navI {
+        float: left;
+        width: 33.3%;
+      }
+      .navI-txt {
+        width: 500px;
+        background: #fff;
+      }
+      .navI_active {
+        position: relative;
+        z-index: 1;
+      }
+      .ml1 {
+        margin-left: -100%;
+      }
+      .ml2 {
+        margin-left: -200%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <ul class="nav">
+        <li class="navI navI_active">
+          <h2 class="navI-tit">课程</h2>
+          <p class="navI-txt">课程内容</p>
+        </li>
+        <li class="navI">
+          <h2 class="navI-tit">学习计划</h2>
+          <p class="navI-txt ml1">学习计划内容</p>
+        </li>
+        <li class="navI">
+          <h2 class="navI-tit">技能图谱</h2>
+          <p class="navI-txt ml2">技能图谱内容</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+
+  <script>
+    let ul = document.querySelector("ul");
+    ul.addEventListener("click", function(e) {
+      var target = e.target;
+      if (
+        target.nodeName == "H2" &&
+        target.className.indexOf("navI_active") == -1
+      ) {
+        var currentActive = document.getElementsByClassName("navI_active")[0];
+        currentActive.classList.remove("navI_active");
+        target.parentNode.classList.add("navI_active");
+      }
+    });
+  </script>
+</html>
