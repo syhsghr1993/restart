@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <p>第一行</p>
+    <h1>第二行</h1>
+  </body>
+  <script>
+    var body = document.body;
+    body.addEventListener("click", function(e) {
+      var target = e.target;
+      if (target.nodeName == "P" || target.nodeName == "H1") {
+        target.parentNode.removeChild(target);
+      }
+    });
+  </script>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table id="tbl" cellspacing="1" cellpadding="5" bgcolor="#660000">
+      <tr>
+        <td nowrap bgcolor="#bbbbbb" style="white-space:nowrap;width:100px">
+          标题一
+        </td>
+        <td nowrap bgcolor="#bbbbbb" style="white-space:nowrap;;width:100px">
+          标题二
+        </td>
+        <td nowrap bgcolor="#bbbbbb" style="width:100px">标题三</td>
+        <td nowrap bgcolor="#bbbbbb" style="width:100px">标题四</td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff">内容A</td>
+        <td bgcolor="#ffffff">内容B</td>
+        <td bgcolor="#ffffff">内容C</td>
+        <td bgcolor="#ffffff">内容D</td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff">内容A</td>
+        <td bgcolor="#ffffff">内容B</td>
+        <td bgcolor="#ffffff">内容C</td>
+        <td bgcolor="#ffffff">内容D</td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff">内容A</td>
+        <td bgcolor="#ffffff">内容B</td>
+        <td bgcolor="#ffffff">内容C</td>
+        <td bgcolor="#ffffff">内容D</td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff">内容A</td>
+        <td bgcolor="#ffffff">内容B</td>
+        <td bgcolor="#ffffff">内容C</td>
+        <td bgcolor="#ffffff">内容D</td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff">内容A</td>
+        <td bgcolor="#ffffff">内容B</td>
+        <td bgcolor="#ffffff">内容C</td>
+        <td bgcolor="#ffffff">内容D</td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff">内容A</td>
+        <td bgcolor="#ffffff">内容B</td>
+        <td bgcolor="#ffffff">内容C</td>
+        <td bgcolor="#ffffff">内容D</td>
+      </tr>
+      <tr>
+        <td bgcolor="#ffffff">内容A</td>
+        <td bgcolor="#ffffff">内容B</td>
+        <td bgcolor="#ffffff">内容C</td>
+        <td bgcolor="#ffffff">内容D</td>
+      </tr>
+    </table>
+
+    <script>
+      var headerTds = document.getElementById("tbl").rows[0].cells;
+      var mousedown = false;
+      var resizeable = false;
+      var targetTd;
+      var screenXStart = 0;
+      var tdWidth = 0;
+      var headerWidth = 0;
+      var tblObj = document.getElementById("tbl");
+      for (var i = 0; i < headerTds.length; i++) {
+        addListener(headerTds[i], "mousedown", onmousedown);
+        addListener(headerTds[i], "mousemove", onmousemove);
+      }
+      function onmousedown(event) {
+        if (resizeable == true) {
+          var evt = event || window.event;
+          mousedown = true;
+          screenXStart = evt.screenX;
+          tdWidth = targetTd.offsetWidth;
+          headerWidth = tblObj.offsetWidth;
+        }
+      }
+      function onmousemove(event) {
+        var evt = event || window.event;
+        var srcObj = getTarget(evt);
+        var offsetX =
+          evt.offsetX || evt.clientX - srcObj.getBoundingClientRect().left; //这个比较关键，解决了Firefox无offsetX属性的问题
+        if (mousedown == true) {
+          var width = tdWidth + (evt.screenX - screenXStart) + "px"; //计算后的新的宽度
+          targetTd.style.width = width;
+          tblObj.style.width =
+            headerWidth + (evt.screenX - screenXStart) + "px";
+        } else {
+          var trObj = tblObj.rows[0];
+          if (srcObj.offsetWidth - offsetX <= 4) {
+            //实际改变本单元格列宽
+            targetTd = srcObj;
+            resizeable = true;
+            srcObj.style.cursor = "col-resize"; //修改光标样式
+          } else if (offsetX <= 4 && srcObj.cellIndex > 0) {
+            //实际改变前一单元格列宽，但是表格左边框线不可拖动
+            targetTd = trObj.cells[srcObj.cellIndex - 1];
+            resizeable = true;
+            srcObj.style.cursor = "col-resize";
+          } else {
+            resizeable = false;
+            srcObj.style.cursor = "default";
+          }
+        }
+      }
+      document.onmouseup = function(event) {
+        tartgetTd = null;
+        resizeable = false;
+        mousedown = false;
+        document.body.style.cursor = "default";
+      };
+      function getTarget(evt) {
+        return evt.target || evt.srcElement;
+      }
+      function addListener(element, type, listener, useCapture) {
+        element.addEventListener
+          ? element.addEventListener(type, listener, useCapture)
+          : element.attachEvent("on" + type, listener);
+      }
+    </script>
+  </body>
+</html>
