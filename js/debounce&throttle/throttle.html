@@ -32,6 +32,7 @@
           canRun = false;
           // 7、定时器
           setTimeout(() => {
+            // 这里有个疑问，为什么fn.call卸载定时器里？觉得拿到外面也可以
             fn.call(this, arguments);
             // 8、执行完事件（比如调用完接口）之后，重新将这个标志设置为 true
             canRun = true;
