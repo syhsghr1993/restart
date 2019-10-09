@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      .root {
+        margin-top: 20px;
+        height: 500px;
+        background: #fff;
+      }
+      .main {
+        margin-top: 50px;
+        height: 200px;
+        background: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="root">
+      <div class="main">
+        <p>外边距合并</p>
+        <div>
+          父元素与其第一个或最后一个子元素之间
+          如果在父元素与其第一个子元素之间不存在边框、内边距、行内内容，也没有创建块格式化上下文、或者清除浮动将两者的
+          margin-top
+          分开；或者在父元素与其最后一个子元素之间不存在边框、内边距、行内内容、height、min-height、max-height将两者的
+          margin-bottom
+          分开，那么这两对外边距之间会产生折叠。此时子元素的外边距会“溢出”到父元素的外面。
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
